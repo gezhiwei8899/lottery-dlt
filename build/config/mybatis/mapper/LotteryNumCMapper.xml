@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gezhiwe.lotterydlt.dao.cmapper.LotteryNumCMapper" >
+  <resultMap id="BaseResultMap" type="com.gezhiwe.lotterydlt.dao.entity.LotteryNum" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="first_num" property="firstNum" jdbcType="INTEGER" />
+    <result column="second_num" property="secondNum" jdbcType="INTEGER" />
+    <result column="third_num" property="thirdNum" jdbcType="INTEGER" />
+    <result column="fourth_num" property="fourthNum" jdbcType="INTEGER" />
+    <result column="fifth_num" property="fifthNum" jdbcType="INTEGER" />
+    <result column="sixth_num" property="sixthNum" jdbcType="INTEGER" />
+    <result column="seventh_num" property="seventhNum" jdbcType="INTEGER" />
+    <result column="open_day" property="openDay" jdbcType="TIMESTAMP" />
+    <result column="open_num" property="openNum" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, first_num, second_num, third_num, fourth_num, fifth_num, sixth_num, seventh_num, 
+    open_day, open_num
+  </sql>
+  <select id="selectExsitByNum" >
+    select count(1) from lottery_num ln where ln.open_num = #{openNum}
+  </select>
+  <select id="exsitLotteryNumInSchedule" resultType="java.lang.Long">
+    select count(1) from lottery_num ln where ln.open_day &gt;= #{standartOpenDay,jdbcType=TIMESTAMP} and ln.open_day &lt;= #{maxOPenDay,jdbcType=TIMESTAMP}
+  </select>
+</mapper>

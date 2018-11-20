@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gezhiwe.lotterydlt.dao.mapper.LotteryNumMapper" >
+  <resultMap id="BaseResultMap" type="com.gezhiwe.lotterydlt.dao.entity.LotteryNum" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="first_num" property="firstNum" jdbcType="INTEGER" />
+    <result column="second_num" property="secondNum" jdbcType="INTEGER" />
+    <result column="third_num" property="thirdNum" jdbcType="INTEGER" />
+    <result column="fourth_num" property="fourthNum" jdbcType="INTEGER" />
+    <result column="fifth_num" property="fifthNum" jdbcType="INTEGER" />
+    <result column="sixth_num" property="sixthNum" jdbcType="INTEGER" />
+    <result column="seventh_num" property="seventhNum" jdbcType="INTEGER" />
+    <result column="open_day" property="openDay" jdbcType="TIMESTAMP" />
+    <result column="open_num" property="openNum" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, first_num, second_num, third_num, fourth_num, fifth_num, sixth_num, seventh_num, 
+    open_day, open_num
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from lottery_num
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from lottery_num
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.gezhiwe.lotterydlt.dao.entity.LotteryNum" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into lottery_num (first_num, second_num, third_num, 
+      fourth_num, fifth_num, sixth_num, 
+      seventh_num, open_day, open_num
+      )
+    values (#{firstNum,jdbcType=INTEGER}, #{secondNum,jdbcType=INTEGER}, #{thirdNum,jdbcType=INTEGER}, 
+      #{fourthNum,jdbcType=INTEGER}, #{fifthNum,jdbcType=INTEGER}, #{sixthNum,jdbcType=INTEGER}, 
+      #{seventhNum,jdbcType=INTEGER}, #{openDay,jdbcType=TIMESTAMP}, #{openNum,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gezhiwe.lotterydlt.dao.entity.LotteryNum" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into lottery_num
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="firstNum != null" >
+        first_num,
+      </if>
+      <if test="secondNum != null" >
+        second_num,
+      </if>
+      <if test="thirdNum != null" >
+        third_num,
+      </if>
+      <if test="fourthNum != null" >
+        fourth_num,
+      </if>
+      <if test="fifthNum != null" >
+        fifth_num,
+      </if>
+      <if test="sixthNum != null" >
+        sixth_num,
+      </if>
+      <if test="seventhNum != null" >
+        seventh_num,
+      </if>
+      <if test="openDay != null" >
+        open_day,
+      </if>
+      <if test="openNum != null" >
+        open_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="firstNum != null" >
+        #{firstNum,jdbcType=INTEGER},
+      </if>
+      <if test="secondNum != null" >
+        #{secondNum,jdbcType=INTEGER},
+      </if>
+      <if test="thirdNum != null" >
+        #{thirdNum,jdbcType=INTEGER},
+      </if>
+      <if test="fourthNum != null" >
+        #{fourthNum,jdbcType=INTEGER},
+      </if>
+      <if test="fifthNum != null" >
+        #{fifthNum,jdbcType=INTEGER},
+      </if>
+      <if test="sixthNum != null" >
+        #{sixthNum,jdbcType=INTEGER},
+      </if>
+      <if test="seventhNum != null" >
+        #{seventhNum,jdbcType=INTEGER},
+      </if>
+      <if test="openDay != null" >
+        #{openDay,jdbcType=TIMESTAMP},
+      </if>
+      <if test="openNum != null" >
+        #{openNum,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gezhiwe.lotterydlt.dao.entity.LotteryNum" >
+    update lottery_num
+    <set >
+      <if test="firstNum != null" >
+        first_num = #{firstNum,jdbcType=INTEGER},
+      </if>
+      <if test="secondNum != null" >
+        second_num = #{secondNum,jdbcType=INTEGER},
+      </if>
+      <if test="thirdNum != null" >
+        third_num = #{thirdNum,jdbcType=INTEGER},
+      </if>
+      <if test="fourthNum != null" >
+        fourth_num = #{fourthNum,jdbcType=INTEGER},
+      </if>
+      <if test="fifthNum != null" >
+        fifth_num = #{fifthNum,jdbcType=INTEGER},
+      </if>
+      <if test="sixthNum != null" >
+        sixth_num = #{sixthNum,jdbcType=INTEGER},
+      </if>
+      <if test="seventhNum != null" >
+        seventh_num = #{seventhNum,jdbcType=INTEGER},
+      </if>
+      <if test="openDay != null" >
+        open_day = #{openDay,jdbcType=TIMESTAMP},
+      </if>
+      <if test="openNum != null" >
+        open_num = #{openNum,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gezhiwe.lotterydlt.dao.entity.LotteryNum" >
+    update lottery_num
+    set first_num = #{firstNum,jdbcType=INTEGER},
+      second_num = #{secondNum,jdbcType=INTEGER},
+      third_num = #{thirdNum,jdbcType=INTEGER},
+      fourth_num = #{fourthNum,jdbcType=INTEGER},
+      fifth_num = #{fifthNum,jdbcType=INTEGER},
+      sixth_num = #{sixthNum,jdbcType=INTEGER},
+      seventh_num = #{seventhNum,jdbcType=INTEGER},
+      open_day = #{openDay,jdbcType=TIMESTAMP},
+      open_num = #{openNum,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
