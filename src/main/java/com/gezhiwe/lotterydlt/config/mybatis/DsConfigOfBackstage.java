@@ -25,7 +25,7 @@ import javax.sql.DataSource;
 public class DsConfigOfBackstage {
 
     @Bean(name = "storeDataSource")
-    @ConfigurationProperties(prefix = "spring.datasource.store")
+    @ConfigurationProperties(prefix = "spring.datasource")
     @Primary
     public DataSource backstageDataSource() {
         return DataSourceBuilder.create().build();
